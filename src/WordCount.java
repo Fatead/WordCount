@@ -60,7 +60,7 @@ public class WordCount
         try
         {
             String filename = "";                         //文件名
-            String outfile = "";                         //文件名
+            String outfile = "result.txt";                         //文件名
             int i = 0;
             int length = args.length;
             while(i<length)
@@ -84,7 +84,7 @@ public class WordCount
                 }
                 if(args[i].equals("-c"))
                 {
-                    w = true;
+                    c = true;
                     i++;
                 }
                 if(args[i].charAt(0)!='-')
@@ -111,7 +111,7 @@ public class WordCount
             if(c==true)
             {
                 message =message+ "字符数是";
-                message = message +wordCount;
+                message = message +charCount;
                 message = message +"\r\n";
             }
             if(l==true)
@@ -120,12 +120,8 @@ public class WordCount
                 message = message +lineCount;
                 message = message +"\r\n";
             }
-            File file = new File("result.txt");
-            FileWriter out = new FileWriter("result.txt");
-            if(o==true)
-            {
-                out = new FileWriter(outfile);
-            }
+            File file = new File(outfile);
+            FileWriter out = new FileWriter(outfile);
             charMessage = message.toCharArray();
             out.write(charMessage);
             out.close();
@@ -144,7 +140,7 @@ public class WordCount
         }
         charCount++;
         if(Char!='\0')
-        r++;
+            r++;
     }
 
 
