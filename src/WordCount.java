@@ -111,7 +111,7 @@ public class WordCount
             if(c==true)
             {
                 message =message+ "字符数是";
-                message = message +wordCount;
+                message = message +charCount;
                 message = message +"\r\n";
             }
             if(l==true)
