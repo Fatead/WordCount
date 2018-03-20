@@ -10,27 +10,37 @@ public class WordCount
     static int lineCount = 0;                //统计代码行数
     static int charCount = 0;                //统计字符个数
     static int wordCount = 0;                //统计单词个数
+<<<<<<< HEAD
     static int wordCount2 = 0;               //统计单词个数
     static int code = 0;                     //统计每行字符个数
     static int codeLine = 0;                //统计代码行
     static int empLine = 0;                //统计空行
     static int exLine = 0;                //统计注释行
     static int num = 0;                //统计注释行
+=======
+    static int wordCount2 = 0;                //统计单词个数
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
     static char Char;
     static char SChar;
     static char[] text = new char[1000];
     static char[] stop = new char[1000];
     public static boolean a =false;
+<<<<<<< HEAD
     public static boolean exSign =false;
     public static boolean exBegin =false;
     public static boolean exEnd =false;
+=======
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
     public static boolean c =false;
     public static boolean l =false;
     public static boolean w =false;
     public static boolean o =false;
     public static boolean e =false;
+<<<<<<< HEAD
     public static boolean s =false;
     //public static String road = "";
+=======
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
     public static boolean change =false;
     public static boolean sp =false;
     public static String message = "";
@@ -62,7 +72,11 @@ public class WordCount
         else
             return false;
     }
+<<<<<<< HEAD
     public static void Reader(String filename,char[] array)             //读文件函数，将读出的字符放在字符数组中。
+=======
+    public static void Reader(String filename,char[] array)
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
     {
         try{
             FileReader in = new FileReader(filename);
@@ -122,6 +136,7 @@ public class WordCount
             out.write(charMessage);
             out.close();
 
+<<<<<<< HEAD
         }
         catch (IOException e){
 
@@ -130,9 +145,13 @@ public class WordCount
 
 
     public static void main(String[] args)           //程序从控制台接收数据,数据会以字符串数组的形式保存在args里面
+=======
+    public static void main(String[] args)           //程序从控制台接收数据
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
     {
 
             String filename = "";                         //文件名
+<<<<<<< HEAD
             String keyword = "";
             String filepath = "";                         //文件名
             String path = "";                         //文件名
@@ -141,11 +160,18 @@ public class WordCount
             int i = 0;
             int num = 0;
             int length = args.length;                   //获取指令的个数
+=======
+            String outfile = "result.txt";                         //输出信息文件名
+            String stoplist = "";
+            int i = 0;
+            int num = 0;
+            int length = args.length;
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
             while(i<length)
             {
-                if(args[i].equals("-w"))
+                if(args[i].equals("-a"))
                 {
-                    w = true;
+                    a = true;
                     i++;
                 }
                 else if(args[i].equals("-o"))
@@ -157,6 +183,7 @@ public class WordCount
                     {
                         break;
                     }
+<<<<<<< HEAD
                     i++;
                 }
                 else if(args[i].equals("-a"))
@@ -169,11 +196,26 @@ public class WordCount
                     c = true;
                     i++;
                 }
+=======
+                    i++;
+                }
+                else if(args[i].equals("-w"))
+                {
+                    w = true;
+                    i++;
+                }
+                else if(args[i].equals("-c"))
+                {
+                    c = true;
+                    i++;
+                }
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
                 else if(args[i].equals("-l"))
                 {
                     l = true;
                     i++;
                 }
+<<<<<<< HEAD
                 else if(args[i].equals("-s"))
                 {
                     s = true;
@@ -181,6 +223,11 @@ public class WordCount
                 }
                 else if(args[i].equals("-e"))
                 {
+=======
+
+                else if(args[i].equals("-e"))
+                {
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
                     e = true;
                     i++;
                     stoplist=args[i];
@@ -208,6 +255,7 @@ public class WordCount
 
             Reader(filename,text);
             for(int h=0;h<200;h++)
+<<<<<<< HEAD
             {
                 stopArray[h] = "";
             }
@@ -223,6 +271,85 @@ public class WordCount
             }
 
             if(e)                               //启用停用词表
+=======
+            {
+                stopArray[h] = "";
+            }
+
+            if(e)
+            {
+                Reader(stoplist,stop);
+                int j = 0;
+                while(j<stop.length)
+                {
+                    SChar = stop[j];
+                    while(SChar==' '||SChar==','||SChar=='\r')
+                    {
+                        j++;
+                        SChar = stop[j];
+                        change = true;
+                    }
+                    if(change)
+                    {
+                        num++;
+                        change = false;
+                    }
+                    stopArray[num] = stopArray[num]+stop[j];
+                    j++;
+                }
+            }
+
+            do
+            {
+                Process();
+            }while(Char!='\0');
+            charCount--;
+            charCount = charCount-2*lineCount;
+            String temp = "";
+            String temp2 = "";
+            if(e)
+            {
+                for(int m = 0;m<wordCount;m++)
+                {
+                    for(int n = 0;n<num;n++)
+                    {
+                        temp = stopArray[n];
+                        temp2 = wordArray[m];
+                        if(temp.equals(temp2))
+                        {
+                            sp=true;
+                        }
+
+                    }
+                    if(!sp)
+                    {
+                        wordCount2++;
+                    }
+                    sp=false;
+                }
+            }
+
+            if(w)
+            {
+                message =message+ "单词数是";
+                if(e)
+                {
+                    message = message +wordCount2;
+                }
+                else
+                {
+                    message = message +wordCount;
+                }
+                message = message +"\r\n";
+            }
+            if(c)
+            {
+                message =message+ "字符数是";
+                message = message +charCount;
+                message = message +"\r\n";
+            }
+            if(l)
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
             {
                 Reader(stoplist,stop);
                 int j = 0;
@@ -244,6 +371,7 @@ public class WordCount
                     j++;
                 }
             }
+<<<<<<< HEAD
 
         do
         {
@@ -273,6 +401,14 @@ public class WordCount
                 }
                 sp=false;
             }
+=======
+            System.out.println(outfile);
+            File file = new File(outfile);
+            FileWriter out = new FileWriter(outfile);
+            charMessage = message.toCharArray();
+            out.write(charMessage);
+            out.close();
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
         }
         fileOut(filename,outfile,w,c,l,a);
 
@@ -362,7 +498,11 @@ public class WordCount
         else if(!(Char==' '||Char=='\r'||Char=='\t'||exSign||exBegin))
         code++;
         charCount++;
+<<<<<<< HEAD
          if(Char!='\0')
+=======
+        if(Char!='\0')
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
             r++;
     }
 
@@ -372,17 +512,29 @@ public class WordCount
         String temp = "";
         while(!(isComma()||isSpace()||isEnter()))
         {
+            if(Char!=' ')
+                temp = temp + Char;
             GetChar();
+<<<<<<< HEAD
             if(Char!=' ')
                 temp = temp + Char;
 
             if(Char=='\0')
                 break;
+=======
+            if(Char=='\0')
+                break;
+
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
         }
         wordArray[wordCount] = temp;
         wordCount++;
 
+<<<<<<< HEAD
      /*  if(isEnter())
+=======
+    /*    if(isEnter())
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
         {
             if(text[r+1]!=' ')
             {
@@ -393,12 +545,17 @@ public class WordCount
         {
             wordCount++;
         }  */
+<<<<<<< HEAD
 
         while(isComma()||isSpace()||isEnter())             //对于空格逗号回车符号的处理
+=======
+        while(isComma()||isSpace()||isEnter())
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
         {
             GetChar();
             if(Char=='\0')
                 break;
+<<<<<<< HEAD
         }
     }
     public static void Count()
@@ -431,6 +588,8 @@ public class WordCount
                 }
                 sp=false;
             }
+=======
+>>>>>>> a44b5d627e11c0eda1a38be12278b1a20471ec43
         }
     }
 };
